@@ -469,15 +469,18 @@ def main(cf):
 
 
 cf = AttrDict()
-cf.num_steps = 50
+cf.num_steps = 1000
 vertical_indices = []
 B_matrices = []
 for i in range(4):
     cf.stim_type = i
     cf.gif_path = "test_" + str(i) + ".gif"
     vi, B = main(cf)
+    np.save("B_matrix_"+str(i)+".npy",B)
     vertical_indices.append(vi)
     B_matrices.append(B)
 
 print("Vertical indicides: ", vertical_indices)
 print("B Matrices: ", B_matrices)
+vertical_indices = np.array(vertical_indices)
+np.save("vertical_indices.npy", vertical_indices)
