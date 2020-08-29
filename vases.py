@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import imageio
 from copy import deepcopy
+import subprocess
 
 matplotlib.use('TkAgg')
 
@@ -35,50 +36,50 @@ ACTION_MAP = [(-1, -1), (0, -1), (1, -1),
               (-1,  0), (0,  0), (1,  0),
               (-1,  1), (0,  1), (1,  1)]
 
-STIM_0 = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+STIM_0 = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],]
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          #[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
 STIM_1 = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]]
+          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],]
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3]]
 
 STIM_2 = [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]]
+          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],]
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[4, 4, 4, 4, 4, 4, 4, 4, 4, 4]]
 
 
 STIM_3 = [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-          [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-          [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],]
+          [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],]
+          #[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          #[3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+          #[2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+          #[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+          #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],]
 
 STIM_0 = np.array(STIM_0)
 STIM_1 = np.array(STIM_1)
@@ -217,8 +218,15 @@ class Env(object):
 
         self.obs_matrix[PIGMENT, :, :] = 0.0
         self.obs_matrix[NO_PIGMENT, :, :] = 1.0
-        num_motifs_x = (GRID[0] // 3) - 1
-        num_motifs_y = (GRID[1] // 3) - 1
+        num_motifs_x = 9
+        if stim_type == 0:
+            num_motifs_y = 1
+        elif stim_type == 1:
+            num_motifs_y = 2
+        else:
+            num_motifs_y = 4
+        #num_motifs_x = (GRID[0] // 3) - 1
+        #num_motifs_y = (GRID[1] // 3) - 1
         curr_y = 1
         for xxx in range(num_motifs_y):
             curr_x = 1
@@ -464,6 +472,9 @@ def main(cf):
     
     vertical_index = (GRID[1] * nb_vert - GRID[0] * nb_horiz)/  (GRID[1] * nb_vert + GRID[1] * nb_vert)
     print("Vertical Index: ", vertical_index)
+    if cf.save:
+        np.save(cf.base_name+ "/visit_matrix_" + str(cf.stim_type)+".npy", env.visit_matrix)
+        np.save(cf.base_name+"/trajectory_vector_"+str(cf.stim_type)+".npy",np.array(env.trajectory_vector))
 
     save_gif(imgs, cf.gif_path)
     return vertical_index, mdp.B_2
@@ -472,12 +483,24 @@ def main(cf):
 cf = AttrDict()
 cf.num_steps = 1000
 vertical_indices = []
+cf.save = True
+cf.base_name="single_row"
 B_matrices = []
+subprocess.call(["mkdir","-p", str(cf.base_name)])
 for i in range(4):
     cf.stim_type = i
-    cf.gif_path = "test_" + str(i) + ".gif"
+    #adjust grid sizes
+    if cf.stim_type == 0:
+        GRID = (30,5)
+    elif cf.stim_type == 1:
+        GRID = (30,8)
+    else:
+        GRID = (30,14)
+    GRID_SIZE = np.prod(GRID)
+
+    cf.gif_path = cf.base_name +"/test_" + str(i) + ".gif"
     vi, B = main(cf)
-    np.save("B_matrix_"+str(i)+".npy",B)
+    np.save(cf.base_name+ "/B_matrix_"+str(i)+".npy",B)
     vertical_indices.append(vi)
     B_matrices.append(B)
 
