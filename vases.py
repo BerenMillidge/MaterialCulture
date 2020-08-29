@@ -120,8 +120,8 @@ class Env(object):
     def step(self, action):
         delta = ACTION_MAP[action]
         # clip 1 away from edge to allow for simple remapping
-        self.x_pos = np.clip(self.x_pos + delta[0], 1, GRID[0] - 1)
-        self.y_pos = np.clip(self.y_pos + delta[1], 1, GRID[1] - 1)
+        self.x_pos = np.clip(self.x_pos + delta[0], 1, GRID[0] - 2)
+        self.y_pos = np.clip(self.y_pos + delta[1], 1, GRID[1] - 2)
         self.visit_matrix[self.x_pos, self.y_pos] += 1
         self.trajectory_vector.append((self.x_pos, self.y_pos))
         return self.observe()
@@ -367,11 +367,11 @@ class MDP(object):
 
         # action selection
         self.uQ = self.softmax(neg_efe)
-        print("uQ: ", neg_efe)
+        #print("uQ: ", neg_efe)
         
         if sample == True:
             hu = np.argmax(np.random.multinomial(1,self.uQ))
-            print("hu: ", hu)
+            #print("hu: ", hu)
             action = hu
         else: 
             #take max
@@ -439,13 +439,14 @@ def main(cf):
         A, A_2 = env.get_A()
         mdp.set_A(A, A_2)       
         action = mdp.step(obs,motif_obs)
-        print("action: ", action)
+        #print("action: ", action)
         obs, motif_obs = env.step(action)
         img = env.plot(t)
         imgs.append(img)
-        print("motif obs: ",motif_obs)
-        print("sq2: ", mdp.sQ_2)
-        print("B2", mdp.B_2)
+        #print("motif obs: ",motif_obs)
+        #print("sq2: ", mdp.sQ_2)
+        #print("B2", mdp.B_2)
+        print("pos: ", (env.x_pos, env.y_pos))
 
         if action == 0 or action == 1 or action == 2 or action == 6 or action == 7 or action == 8:
             nb_vert += 1
