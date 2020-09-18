@@ -8,4 +8,15 @@ The paper can be found here: https://psyarxiv.com/rchaf/
 
 This is joint work with Axel Constant, Alec Tshantz, and Andy Clark.
 
+If you find this paper or the code useful, please cite us as:
+```
+@article{constant2020acquisition,
+  title={The Acquisition of Culturally Patterned Attention Styles under Active Inference},
+  author={Constant, Axel and Tschantz, Alexander and Millidge, Beren and Criado-Boado, Felipe and Martinez, Luis M and M{\"u}ller, Johannes and Clark, Andy},
+  year={2020},
+  publisher={PsyArXiv}
+}
+
+```
+
 
