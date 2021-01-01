@@ -6,7 +6,7 @@ This work also contains a two level hierarchy of pixels (bottom-level) and motif
 
 The paper can be found here: https://psyarxiv.com/rchaf/
 
-This is joint work with Axel Constant, Alec Tshantz, and Andy Clark.
+This is joint work with Axel Constant, [Alec Tschantz](https://github.com/alec-tschantz) and Andy Clark.
 
 If you find this paper or the code useful, please cite us as:
 ```
@@ -20,3 +20,4 @@ If you find this paper or the code useful, please cite us as:
 ```
 
 
+)
